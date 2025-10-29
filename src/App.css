@@ -1,0 +1,341 @@
+/* src/App.css */
+
+:root {
+  --primary-text-color: #ffffff;
+  --secondary-text-color: #d1d1d1;
+  --card-bg-color: rgba(255, 255, 255, 0.1);
+  --card-border-color: rgba(255, 255, 255, 0.2);
+  --background-color: #3d689a;
+}
+
+[data-theme='dark'] {
+  --primary-text-color: #ffffff;
+  --secondary-text-color: #d1d1d1;
+  --card-bg-color: rgba(0, 0, 0, 0.2);
+  --card-border-color: rgba(255, 255, 255, 0.1);
+  --background-color: #2a4b6f;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  color: var(--primary-text-color);
+  background: #333;
+}
+
+.app {
+  background: var(--background-color);
+  min-height: 100vh;
+  padding: 2rem;
+}
+
+.dashboard-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+ 
+}
+
+/* Header */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.header-left, .header-center, .header-right {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+
+.icon-btn {
+  background: transparent;
+  border: none;
+  color: var(--primary-text-color);
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.header h1 {
+  font-size: 1.5rem;
+  margin: 0;
+}
+
+
+.logo {
+  width: 40px;
+  height: 40px;
+}
+
+/* Search Bar */
+.search-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  background: var(--card-bg-color);
+  border: 1px solid var(--card-border-color);
+  border-radius: 25px;
+  padding: 0.5rem 1rem;
+  backdrop-filter: blur(10px);
+  z-index: 1;
+}
+
+.search-container input {
+  background: transparent;
+  border: none;
+  color: var(--primary-text-color);
+  font-size: 1rem;
+  outline: none;
+  margin-left: 0.5rem;
+}
+
+.search-container input::placeholder {
+  color: var(--secondary-text-color);
+}
+
+.search-container button {
+  background: transparent;
+  border: none;
+  color: var(--primary-text-color);
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.suggestions-list {
+  position: absolute;
+  top: calc(100% + 5px);
+  left: 0;
+  right: 0;
+  background: var(--card-bg-color);
+  border: 1px solid var(--card-border-color);
+  border-radius: 10px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  z-index: 10;
+  max-height: 150px;
+  overflow-y: auto;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.suggestions-list li {
+  padding: 0.75rem 1rem;
+  cursor: pointer;
+  border-bottom: 1px solid var(--card-border-color);
+}
+
+.suggestions-list li:last-child {
+  border-bottom: none;
+}
+
+.suggestions-list li:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* Main Content */
+.main-content {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 2rem;
+  
+}
+
+.left-column, .right-column {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  
+}
+
+/* Glassmorphism Card Style */
+.current-weather-card, .hourly-forecast-card, .overview, .other-cities, .overview-card, .city-card, .sunrise-sunset-card {
+  background: var(--card-bg-color);
+  border: 1px solid var(--card-border-color);
+  border-radius: 20px;
+  padding: 1.5rem;
+  backdrop-filter: blur(10px);
+  
+}
+
+/* Current Weather Card */
+.current-weather-card .card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+ 
+}
+
+.current-weather-card .card-header h3 {
+  margin: 0;
+  font-size: 1.5rem;
+  
+}
+
+.temperature-main {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.temperature {
+  font-size: 5rem;
+  font-weight: 300;
+  margin: 0;
+}
+
+.weather-condition, .feels-like {
+  font-size: 1.2rem;
+  color: var(--secondary-text-color);
+}
+
+.weather-description p {
+  margin: 0.5rem 0;
+  color: var(--secondary-text-color);
+}
+
+/* Hourly Forecast Card */
+.tabs {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.tabs button {
+  background: transparent;
+  border: none;
+  color: var(--secondary-text-color);
+  font-size: 1rem;
+  cursor: pointer;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid transparent;
+}
+
+.tabs button.active {
+  color: var(--primary-text-color);
+  border-bottom-color: var(--primary-text-color);
+}
+
+.hourly-items {
+  display: flex;
+  justify-content: space-between;
+}
+
+.hourly-item {
+  text-align: center;
+}
+
+.hourly-item .weather-icon {
+  font-size: 2rem;
+}
+
+/* Overview */
+.overview h3 {
+  margin-top: 0;
+}
+
+.overview-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 1rem;
+}
+
+.overview-card {
+  padding: 1rem;
+}
+
+.overview-card h4 {
+  margin: 0 0 1rem 0;
+  color: var(--secondary-text-color);
+}
+
+.overview-card-content {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.overview-icon {
+  font-size: 2rem;
+}
+
+.overview-card p {
+  font-size: 1.5rem;
+  margin: 0;
+}
+
+.overview-description {
+  font-size: 0.8rem !important;
+  color: var(--secondary-text-color);
+  margin-top: 0.5rem !important;
+}
+
+.uv-index-bar {
+  width: 100%;
+  height: 10px;
+  background: #555;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.uv-index-level {
+  height: 100%;
+  background: linear-gradient(to right, yellow, orange, red);
+}
+
+/* Other Cities */
+.other-cities-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+   margin-bottom: 1rem;
+}
+
+.other-cities-header a {
+  color: var(--secondary-text-color);
+  text-decoration: none;
+ 
+}
+
+.city-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.city-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.2rem;
+}
+
+.city-info h4, .city-info p {
+  margin: 0;
+}
+
+.city-info p {
+  color: var(--secondary-text-color);
+}
+
+
+/* Sunrise & Sunset */
+.sunrise-sunset-card h3 {
+  margin-top: 0;
+}
+
+.sunrise-sunset-content {
+  display: flex;
+  justify-content: space-around;
+  text-align: center;
+}
+
+.sunrise-icon, .sunset-icon {
+  font-size: 3rem;
+}
+
+.error {
+  color: #ff4d4d;
+}
