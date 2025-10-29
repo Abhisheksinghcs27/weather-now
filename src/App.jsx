@@ -52,26 +52,19 @@ const App = () => {
 
   useEffect(() => {
     if (navigator.geolocation) {
-      console.log("Geolocation is available.");
       navigator.geolocation.getCurrentPosition(async (position) => {
-        console.log("Got position:", position.coords);
         const { latitude, longitude } = position.coords;
         try {
           const response = await fetch(`https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${latitude}&longitude=${longitude}&localityLanguage=en`);
           const data = await response.json();
-          console.log("Reverse geocoding data:", data);
-          const city = data.city ? data.city.trim() : 'mumbai';
-          fetchWeatherData(city);
+          fetchWeatherData(data.city || 'mumbai ');
         } catch (error) {
-          console.error("Reverse geocoding failed:", error);
           fetchWeatherData('mumbai');
         }
-      }, (error) => {
-        console.error("Geolocation permission denied or error:", error);
+      }, () => {
         fetchWeatherData('mumbai');
       });
     } else {
-      console.log("Geolocation is not available.");
       fetchWeatherData('mumbai');
     }
   }, []);
